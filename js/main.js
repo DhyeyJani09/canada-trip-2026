@@ -377,7 +377,7 @@
     }
   }
 
-    function fillFromTile(tile) {
+      function fillFromTile(tile) {
     var thumb = tile.getAttribute('data-thumb') || '';
     var title = tile.getAttribute('data-title') || '';
     var caption = tile.getAttribute('data-caption') || '';
@@ -386,30 +386,20 @@
     var isVideo = tile.getAttribute('data-is-video') === '1';
 
     var imgEl = Lightbox.img;
-    var videoContainer = qs('#lightboxVideoContainer');
+    var videoContainer = document.getElementById('lightboxVideoContainer');
+    var videoIframe = document.getElementById('lightboxVideoIframe');
 
-    // Ensure video container exists
-    if (!videoContainer) {
-      videoContainer = document.createElement('div');
-      videoContainer.id = 'lightboxVideoContainer';
-      videoContainer.style.display = 'none';
-      Lightbox.el.insertBefore(videoContainer, Lightbox.img.nextSibling);
+    if (!videoContainer || !videoIframe) {
+      // Fallback: if video elements are missing, treat as photo
+      isVideo = false;
     }
 
     if (isVideo && fileId) {
-      // Hide image, show video iframe
+      // Video mode
       imgEl.style.display = 'none';
-      videoContainer.style.display = 'block';
-      videoContainer.innerHTML = '' +
-        '<iframe ' +
-          'src="https://drive.google.com/file/d/' + encodeURIComponent(fileId) + '/preview" ' +
-          'width="100%" ' +
-          'height="100%" ' +
-          'frameborder="0" ' +
-          'allow="autoplay; fullscreen" ' +
-          'allowfullscreen ' +
-          'style="border:0; width:100%; height:100%; max-height:85vh;" ' +
-        '></iframe>';
+      videoContainer.hidden = false;
+      videoIframe.src = 'https://drive.google.com/file/d/' + encodeURIComponent(fileId) + '/preview';
+
       Lightbox.titleEl.textContent = title;
       Lightbox.metaEl.textContent = caption;
       Lightbox.counterEl.textContent = (Lightbox.index + 1) + ' / ' + Lightbox.items.length;
@@ -426,8 +416,8 @@
     } else {
       // Photo mode
       imgEl.style.display = 'block';
-      if (videoContainer) videoContainer.style.display = 'none';
-      if (videoContainer) videoContainer.innerHTML = '';
+      if (videoContainer) videoContainer.hidden = true;
+      videoIframe.src = '';
 
       imgEl.src = thumb;
       imgEl.alt = title;
