@@ -421,7 +421,9 @@
     </button>
     <figure class="lightbox-figure">
   <img id="lightboxImg" src="" alt="">
-  <!-- Caption hidden for fullscreen look -->
+  <div id="lightboxVideoContainer" class="lightbox-video-container" hidden>
+    <iframe id="lightboxVideoIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
   <figcaption class="lightbox-caption" hidden>
     <span class="lightbox-title" id="lightboxTitle"></span>
     <span class="lightbox-meta mono" id="lightboxMeta"></span>
