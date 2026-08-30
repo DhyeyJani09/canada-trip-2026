@@ -186,6 +186,13 @@
     var thumb = escapeHtml(rec.thumbnailUrl || '');
     var driveUrl = escapeHtml(rec.driveUrl || '');
     var fileId = (driveUrl.match(/\/file\/d\/([^/]+)/) || [])[1] || '';
+       if (isVideoRecord(rec)) {
+  console.log('VIDEO TILE BUILD:', {
+    name: rec.name,
+    driveUrl: rec.driveUrl,
+    fileId: fileId
+  });
+}
 
     var badge = isVideo ? '<span class="tile-badge">Video</span>' : '';
     var img = '<img src="' + thumb + '" alt="' + title + '" loading="lazy">';
