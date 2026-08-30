@@ -420,18 +420,19 @@
       <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <figure class="lightbox-figure">
-      <img id="lightboxImg" src="" alt="">
-      <figcaption class="lightbox-caption">
-        <span class="lightbox-title" id="lightboxTitle"></span>
-        <span class="lightbox-meta mono" id="lightboxMeta"></span>
-      </figcaption>
-    </figure>
-    <span class="lightbox-counter mono" id="lightboxCounter">1 / 18</span>
+  <img id="lightboxImg" src="" alt="">
+  <!-- Caption hidden for fullscreen look -->
+  <figcaption class="lightbox-caption" hidden>
+    <span class="lightbox-title" id="lightboxTitle"></span>
+    <span class="lightbox-meta mono" id="lightboxMeta"></span>
+  </figcaption>
+</figure>
 
-<a id="lightboxOpenOriginal" class="lightbox-btn" href="#" target="_blank" rel="noopener">
-  Open original in Drive
-</a>
-
+<div class="lightbox-controls">
+  <span class="lightbox-counter mono" id="lightboxCounter">1 / 18</span>
+  <a id="lightboxOpenOriginal" class="lightbox-btn lightbox-open-original" href="#" target="_blank" rel="noopener">
+    Open original in Drive
+  </a>
 </div>
 
   <script src="js/vendor/bootstrap.bundle.min.js"></script>
