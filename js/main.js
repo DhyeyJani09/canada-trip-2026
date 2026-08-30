@@ -228,11 +228,11 @@
 
     
 
-    // wire up photo tiles to open the lightbox
+        // wire up all tiles (photos and videos) to open the lightbox
     qsa('.tile', Gallery.grid).forEach(function (tile) {
-      if (tile.getAttribute('data-is-video') === '1') return;
       var btn = qs('.tile-open', tile);
       if (!btn) return;
+
       btn.addEventListener('click', function () {
         refreshLightboxSet();
         var idx = Lightbox.items.indexOf(tile);
@@ -330,11 +330,9 @@
     items: [], index: 0, lastFocus: null, focusables: [], initialized: false
   };
 
-  function collectVisibleTiles() {
+    function collectVisibleTiles() {
     if (!Gallery.grid) return [];
-    return qsa('.tile', Gallery.grid).filter(function (t) {
-      return t.getAttribute('data-is-video') !== '1';
-    });
+    return qsa('.tile', Gallery.grid);
   }
 
   function refreshLightboxSet() {
