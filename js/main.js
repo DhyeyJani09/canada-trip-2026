@@ -235,21 +235,19 @@
 
     
 
-           // wire up tiles: photos → lightbox, videos → same-tab Drive preview
+              // wire up tiles: photos → lightbox, videos → new-tab Drive URL
     qsa('.tile', Gallery.grid).forEach(function (tile) {
       var btn = qs('.tile-open', tile);
       if (!btn) return;
 
       var isVideo = tile.getAttribute('data-is-video') === '1';
       var driveUrl = tile.getAttribute('data-drive-url') || '';
-      var fileId = tile.getAttribute('data-file-id') || '';
 
       btn.addEventListener('click', function (e) {
-        if (isVideo && fileId) {
+        if (isVideo && driveUrl) {
           e.preventDefault();
           e.stopPropagation();
-          var previewUrl = 'https://drive.google.com/file/d/' + encodeURIComponent(fileId) + '/preview';
-          window.location.href = previewUrl; // same tab navigation
+          window.open(driveUrl, '_blank', 'noopener');
           return;
         }
 
