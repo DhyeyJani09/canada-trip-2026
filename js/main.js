@@ -397,21 +397,35 @@
     }
   }
 
-      function fillFromTile(tile) {
+       function fillFromTile(tile) {
     var thumb = tile.getAttribute('data-thumb') || '';
     var title = tile.getAttribute('data-title') || '';
     var caption = tile.getAttribute('data-caption') || '';
     var driveUrl = tile.getAttribute('data-drive-url') || '';
-    var fileId = tile.getAttribute('data-file-id') || '';
-    var isVideo = tile.getAttribute('data-is-video') === '1';
-         if (isVideo) {
-  console.log('VIDEO TILE:', {
-    driveUrl: driveUrl,
-    fileId: fileId,
-    embedUrl: 'https://drive.google.com/file/d/' + encodeURIComponent(fileId) + '/preview'
-  });
-}
 
+    var imgEl = Lightbox.img;
+    var videoContainer = document.getElementById('lightboxVideoContainer');
+
+    // Always photo mode now
+    imgEl.style.display = 'block';
+    if (videoContainer) videoContainer.hidden = true;
+
+    imgEl.src = thumb;
+    imgEl.alt = title;
+    Lightbox.titleEl.textContent = title;
+    Lightbox.metaEl.textContent = caption;
+    Lightbox.counterEl.textContent = (Lightbox.index + 1) + ' / ' + Lightbox.items.length;
+
+    if (Lightbox.openOriginalEl) {
+      if (driveUrl) {
+        Lightbox.openOriginalEl.href = driveUrl;
+        Lightbox.openOriginalEl.hidden = false;
+      } else {
+        Lightbox.openOriginalEl.removeAttribute('href');
+        Lightbox.openOriginalEl.hidden = true;
+      }
+    }
+  }
     var imgEl = Lightbox.img;
     var videoContainer = document.getElementById('lightboxVideoContainer');
     var videoIframe = document.getElementById('lightboxVideoIframe');
