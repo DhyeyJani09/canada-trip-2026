@@ -422,7 +422,16 @@
     <figure class="lightbox-figure">
   <img id="lightboxImg" src="" alt="">
   <div id="lightboxVideoContainer" class="lightbox-video-container" hidden>
-    <iframe id="lightboxVideoIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div id="lightboxVideoContainer" class="lightbox-video-container" hidden>
+  <iframe
+    id="lightboxVideoIframe"
+    src=""
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+    sandbox="allow-scripts allow-same-origin allow-presentation"
+  ></iframe>
+</div>
   </div>
   <figcaption class="lightbox-caption" hidden>
     <span class="lightbox-title" id="lightboxTitle"></span>
