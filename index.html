@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>document.documentElement.classList.add("js")</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mosaic — A Photography Gallery Template</title>
+  <meta name="description" content="Mosaic is a free, photography-forward gallery template with a true masonry grid, instant category filtering, and a keyboard-friendly lightbox. Built on Bootstrap 5, no jQuery.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#gallery">Skip to gallery</a>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar navbar-expand-lg" aria-label="Primary">
+      <div class="container">
+        <a class="navbar-brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </span>
+          Mosaic<span class="brand-dot">.</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="primaryNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link active" href="#gallery">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="#series">Series</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#subscribe">Journal</a></li>
+            <li class="nav-item ms-lg-3"><a class="btn btn-accent" href="#subscribe">Get prints</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="eyebrow"><span class="eyebrow-line"></span>Independent photography studio — est. 2019</p>
+        <h1 class="hero-title" id="hero-title">A quiet catalogue of<br>light, form &amp; distance.</h1>
+        <p class="hero-lead">Mosaic collects the field work of the studio into a single scrollable wall — architecture, landscape, portrait and street, printed for collectors and shown here at full resolution. Browse the grid, filter by series, and open any frame full screen.</p>
+
+        <!-- Filter pills -->
+        <div class="filter-bar" role="group" aria-label="Filter gallery by series">
+          <button class="filter-pill is-active" data-filter="all" aria-pressed="true">All work <span class="pill-count">18</span></button>
+          <button class="filter-pill" data-filter="architecture" aria-pressed="false">Architecture</button>
+          <button class="filter-pill" data-filter="landscape" aria-pressed="false">Landscape</button>
+          <button class="filter-pill" data-filter="portrait" aria-pressed="false">Portrait</button>
+          <button class="filter-pill" data-filter="street" aria-pressed="false">Street</button>
+          <button class="filter-pill" data-filter="interiors" aria-pressed="false">Interiors</button>
+          <button class="filter-pill" data-filter="abstract" aria-pressed="false">Abstract</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MASONRY GALLERY ============ -->
+    <section class="gallery-section" id="gallery" aria-label="Photography gallery">
+      <div class="container">
+        <div class="gallery-meta">
+          <span class="mono" id="galleryCount">Showing 12 / 18 frames</span>
+          <span class="mono muted">Click any frame to open the viewer</span>
+        </div>
+
+        <div class="masonry" id="masonry">
+          <!-- 1 -->
+          <figure class="tile reveal" data-category="architecture" data-index="0" data-title="Concrete Cathedral" data-caption="Architecture — Valencia, Spain · 40mm, ƒ8">
+            <button class="tile-open" type="button" aria-label="Open “Concrete Cathedral” in viewer">
+              <img src="img/p1.jpg" width="800" height="1100" loading="lazy" alt="Vaulted concrete ceiling of a modernist chapel lit by a single skylight">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Architecture</span>
+                <span class="tile-title">Concrete Cathedral</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 2 -->
+          <figure class="tile reveal" data-category="landscape" data-index="1" data-title="Fjord at First Light" data-caption="Landscape — Lofoten, Norway · 24mm, ƒ11">
+            <button class="tile-open" type="button" aria-label="Open “Fjord at First Light” in viewer">
+              <img src="img/p2.jpg" width="800" height="600" loading="lazy" alt="Still fjord water reflecting snow-capped peaks at dawn">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Landscape</span>
+                <span class="tile-title">Fjord at First Light</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 3 -->
+          <figure class="tile reveal" data-category="portrait" data-index="2" data-title="Marisol in Ochre" data-caption="Portrait — studio · 85mm, ƒ1.8">
+            <button class="tile-open" type="button" aria-label="Open “Marisol in Ochre” in viewer">
+              <img src="img/p3.jpg" width="800" height="1000" loading="lazy" alt="Portrait of a woman in an ochre scarf against a warm neutral backdrop">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Portrait</span>
+                <span class="tile-title">Marisol in Ochre</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 4 -->
+          <figure class="tile reveal" data-category="street" data-index="3" data-title="Crossing, 6am" data-caption="Street — Tokyo, Japan · 35mm, ƒ2.8">
+            <button class="tile-open" type="button" aria-label="Open “Crossing, 6am” in viewer">
+              <img src="img/p4.jpg" width="800" height="560" loading="lazy" alt="Lone commuter crossing an empty city intersection at early morning">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Street</span>
+                <span class="tile-title">Crossing, 6am</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 5 -->
+          <figure class="tile reveal" data-category="interiors" data-index="4" data-title="The Reading Room" data-caption="Interiors — Lisbon, Portugal · 20mm, ƒ4">
+            <button class="tile-open" type="button" aria-label="Open “The Reading Room” in viewer">
+              <img src="img/p5.jpg" width="800" height="1000" loading="lazy" alt="Grand library reading room with tall arched windows and long study tables">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Interiors</span>
+                <span class="tile-title">The Reading Room</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 6 -->
+          <figure class="tile reveal" data-category="abstract" data-index="5" data-title="Folded Light" data-caption="Abstract — studio · 100mm macro">
+            <button class="tile-open" type="button" aria-label="Open “Folded Light” in viewer">
+              <img src="img/p6.jpg" width="800" height="800" loading="lazy" alt="Abstract study of folded paper casting soft gradient shadows">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Abstract</span>
+                <span class="tile-title">Folded Light</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 7 -->
+          <figure class="tile reveal" data-category="architecture" data-index="6" data-title="Brutalist Stair" data-caption="Architecture — London, UK · 28mm, ƒ5.6">
+            <button class="tile-open" type="button" aria-label="Open “Brutalist Stair” in viewer">
+              <img src="img/p7.jpg" width="800" height="1200" loading="lazy" alt="Spiralling raw-concrete staircase seen from below">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Architecture</span>
+                <span class="tile-title">Brutalist Stair</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 8 -->
+          <figure class="tile reveal" data-category="landscape" data-index="7" data-title="Dune Ridgeline" data-caption="Landscape — Namib Desert · 70mm, ƒ13">
+            <button class="tile-open" type="button" aria-label="Open “Dune Ridgeline” in viewer">
+              <img src="img/p8.jpg" width="800" height="600" loading="lazy" alt="Sharp sunlit ridgeline of an orange desert dune against shadow">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Landscape</span>
+                <span class="tile-title">Dune Ridgeline</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 9 -->
+          <figure class="tile reveal" data-category="portrait" data-index="8" data-title="Ivo, Backstage" data-caption="Portrait — Berlin, Germany · 50mm, ƒ2">
+            <button class="tile-open" type="button" aria-label="Open “Ivo, Backstage” in viewer">
+              <img src="img/p9.jpg" width="800" height="1050" loading="lazy" alt="Candid portrait of a performer resting backstage in low light">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Portrait</span>
+                <span class="tile-title">Ivo, Backstage</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 10 -->
+          <figure class="tile reveal" data-category="street" data-index="9" data-title="Neon &amp; Rain" data-caption="Street — Hong Kong · 35mm, ƒ1.4">
+            <button class="tile-open" type="button" aria-label="Open “Neon and Rain” in viewer">
+              <img src="img/p10.jpg" width="800" height="1000" loading="lazy" alt="Rain-slicked night street reflecting coloured neon signage">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Street</span>
+                <span class="tile-title">Neon &amp; Rain</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 11 -->
+          <figure class="tile reveal" data-category="interiors" data-index="10" data-title="Marble Foyer" data-caption="Interiors — Milan, Italy · 24mm, ƒ4">
+            <button class="tile-open" type="button" aria-label="Open “Marble Foyer” in viewer">
+              <img src="img/p11.jpg" width="800" height="600" loading="lazy" alt="Symmetrical marble lobby with a sweeping staircase and brass rails">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Interiors</span>
+                <span class="tile-title">Marble Foyer</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 12 -->
+          <figure class="tile reveal" data-category="abstract" data-index="11" data-title="Chromatic Drift" data-caption="Abstract — studio · long exposure">
+            <button class="tile-open" type="button" aria-label="Open “Chromatic Drift” in viewer">
+              <img src="img/p12.jpg" width="800" height="800" loading="lazy" alt="Long-exposure smear of coloured light forming soft chromatic bands">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Abstract</span>
+                <span class="tile-title">Chromatic Drift</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 13 (hidden until load more) -->
+          <figure class="tile reveal is-extra" data-category="architecture" data-index="12" data-title="Glass &amp; Steel" data-caption="Architecture — Rotterdam, NL · 16mm, ƒ8">
+            <button class="tile-open" type="button" aria-label="Open “Glass and Steel” in viewer">
+              <img src="img/p13.jpg" width="800" height="1150" loading="lazy" alt="Upward view of a glass-and-steel facade converging into blue sky">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Architecture</span>
+                <span class="tile-title">Glass &amp; Steel</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 14 -->
+          <figure class="tile reveal is-extra" data-category="landscape" data-index="13" data-title="Alpine Silence" data-caption="Landscape — Dolomites, Italy · 24mm, ƒ11">
+            <button class="tile-open" type="button" aria-label="Open “Alpine Silence” in viewer">
+              <img src="img/p14.jpg" width="800" height="560" loading="lazy" alt="Snow-dusted alpine valley under flat overcast winter light">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Landscape</span>
+                <span class="tile-title">Alpine Silence</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 15 -->
+          <figure class="tile reveal is-extra" data-category="portrait" data-index="14" data-title="Hands of the Maker" data-caption="Portrait — Kyoto, Japan · 90mm, ƒ2.8">
+            <button class="tile-open" type="button" aria-label="Open “Hands of the Maker” in viewer">
+              <img src="img/p15.jpg" width="800" height="1000" loading="lazy" alt="Close portrait of a craftsman's weathered hands shaping clay">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Portrait</span>
+                <span class="tile-title">Hands of the Maker</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 16 -->
+          <figure class="tile reveal is-extra" data-category="street" data-index="15" data-title="Market Motion" data-caption="Street — Marrakesh, Morocco · 35mm, ƒ4">
+            <button class="tile-open" type="button" aria-label="Open “Market Motion” in viewer">
+              <img src="img/p16.jpg" width="800" height="600" loading="lazy" alt="Blurred figures moving through a sunlit covered market lane">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Street</span>
+                <span class="tile-title">Market Motion</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 17 -->
+          <figure class="tile reveal is-extra" data-category="interiors" data-index="16" data-title="Atelier North" data-caption="Interiors — Copenhagen, DK · 20mm, ƒ4">
+            <button class="tile-open" type="button" aria-label="Open “Atelier North” in viewer">
+              <img src="img/p17.jpg" width="800" height="1050" loading="lazy" alt="Bright minimalist studio with north-facing windows and pale timber floors">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Interiors</span>
+                <span class="tile-title">Atelier North</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+          <!-- 18 -->
+          <figure class="tile reveal is-extra" data-category="abstract" data-index="17" data-title="Liquid Metal" data-caption="Abstract — studio · 100mm macro">
+            <button class="tile-open" type="button" aria-label="Open “Liquid Metal” in viewer">
+              <img src="img/p18.jpg" width="800" height="800" loading="lazy" alt="Macro abstract of rippling mercury-like reflective liquid metal">
+              <span class="tile-overlay">
+                <span class="tile-cat mono">Abstract</span>
+                <span class="tile-title">Liquid Metal</span>
+                <span class="tile-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </figure>
+        </div>
+
+        <div class="load-more-wrap" id="loadMoreWrap">
+          <button class="btn btn-outline-quiet" id="loadMore" type="button">
+            Load more frames
+            <span class="mono load-remaining">+6</span>
+          </button>
+        </div>
+        <p class="empty-state mono" id="emptyState" hidden>No frames in this series yet.</p>
+      </div>
+    </section>
+
+    <!-- ============ SERIES STRIP ============ -->
+    <section class="series-strip" id="series" aria-labelledby="series-title">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-4">
+            <h2 class="section-title" id="series-title">Six ongoing series</h2>
+            <p class="muted mb-0">Each frame belongs to a body of work the studio returns to year after year. Filter the wall above to follow a single thread.</p>
+          </div>
+          <div class="col-lg-8">
+            <ul class="series-list">
+              <li><button class="series-link" data-filter="architecture"><span class="mono series-no">01</span> Architecture <span class="series-meta mono">3 frames</span></button></li>
+              <li><button class="series-link" data-filter="landscape"><span class="mono series-no">02</span> Landscape <span class="series-meta mono">3 frames</span></button></li>
+              <li><button class="series-link" data-filter="portrait"><span class="mono series-no">03</span> Portrait <span class="series-meta mono">3 frames</span></button></li>
+              <li><button class="series-link" data-filter="street"><span class="mono series-no">04</span> Street <span class="series-meta mono">3 frames</span></button></li>
+              <li><button class="series-link" data-filter="interiors"><span class="mono series-no">05</span> Interiors <span class="series-meta mono">3 frames</span></button></li>
+              <li><button class="series-link" data-filter="abstract"><span class="mono series-no">06</span> Abstract <span class="series-meta mono">3 frames</span></button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT / CREDITS STRIP ============ -->
+    <section class="about-strip" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-7">
+            <p class="eyebrow"><span class="eyebrow-line"></span>About the studio</p>
+            <h2 class="section-title" id="about-title">Mosaic is a working archive, kept deliberately plain so the pictures carry the room.</h2>
+            <p class="muted">Founded by curator-photographer Renata Vance, the studio shoots on location across Europe, North Africa and East Asia, then edits down hard — most trips yield a single frame worth keeping. Prints are produced in small signed editions on cotton rag; the online wall stays free to browse.</p>
+          </div>
+          <div class="col-lg-5">
+            <div class="stat-grid">
+              <div class="stat">
+                <span class="stat-num mono" data-count="18">0</span>
+                <span class="stat-label">Frames on the wall</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num mono" data-count="6">0</span>
+                <span class="stat-label">Ongoing series</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num mono" data-count="34">0</span>
+                <span class="stat-label">Cities photographed</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num mono" data-count="7">0</span>
+                <span class="stat-label">Years in the field</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="subscribe" id="subscribe" aria-labelledby="subscribe-title">
+      <div class="container">
+        <div class="subscribe-inner">
+          <div class="subscribe-copy">
+            <h2 class="section-title" id="subscribe-title">Join the print list</h2>
+            <p class="muted mb-0">One email when a new series lands or an edition opens — no more than a few times a year. Subscribers see prints before they reach the shop.</p>
+          </div>
+          <form class="subscribe-form" id="subscribeForm" novalidate>
+            <label class="visually-hidden" for="email">Email address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="you@studio.com" autocomplete="email" required>
+            <button class="btn btn-accent" type="submit">Subscribe</button>
+            <p class="form-note mono" id="formNote" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <a class="navbar-brand footer-brand" href="#top">
+            <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            Mosaic<span class="brand-dot">.</span>
+          </a>
+          <p class="muted footer-blurb">An independent photography studio and print archive. Browse the full wall at any resolution, free.</p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h3 class="footer-h">Explore</h3>
+          <ul class="footer-nav">
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#series">Series</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#subscribe">Journal</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h3 class="footer-h">Series</h3>
+          <ul class="footer-nav">
+            <li><a href="#gallery">Architecture</a></li>
+            <li><a href="#gallery">Landscape</a></li>
+            <li><a href="#gallery">Portrait</a></li>
+            <li><a href="#gallery">Street</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h3 class="footer-h">Studio</h3>
+          <ul class="footer-nav">
+            <li><a href="mailto:studio@mosaicgallery.example">studio@mosaicgallery.example</a></li>
+            <li><a href="tel:+441632960112">+44 1632 960112</a></li>
+            <li class="mono footer-addr">Unit 4, Almond Wharf<br>London E2</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="mono mb-0">© 2026 Mosaic Studio. All frames shown for portfolio display.</p>
+        <ul class="footer-social">
+          <li><a href="#top">Instagram</a></li>
+          <li><a href="#top">Behance</a></li>
+          <li><a href="#top">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <div class="lightbox-backdrop" data-close></div>
+    <button class="lightbox-btn lightbox-close" type="button" data-close aria-label="Close viewer">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    </button>
+    <button class="lightbox-btn lightbox-prev" type="button" data-prev aria-label="Previous image">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="lightbox-btn lightbox-next" type="button" data-next aria-label="Next image">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImg" src="" alt="">
+      <figcaption class="lightbox-caption">
+        <span class="lightbox-title" id="lightboxTitle"></span>
+        <span class="lightbox-meta mono" id="lightboxMeta"></span>
+      </figcaption>
+    </figure>
+    <span class="lightbox-counter mono" id="lightboxCounter">1 / 18</span>
+  </div>
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
