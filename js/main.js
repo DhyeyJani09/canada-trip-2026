@@ -235,12 +235,25 @@
 
     
 
-        // wire up all tiles (photos and videos) to open the lightbox
+           // wire up tiles: photos → lightbox, videos → same-tab Drive preview
     qsa('.tile', Gallery.grid).forEach(function (tile) {
       var btn = qs('.tile-open', tile);
       if (!btn) return;
 
-      btn.addEventListener('click', function () {
+      var isVideo = tile.getAttribute('data-is-video') === '1';
+      var driveUrl = tile.getAttribute('data-drive-url') || '';
+      var fileId = tile.getAttribute('data-file-id') || '';
+
+      btn.addEventListener('click', function (e) {
+        if (isVideo && fileId) {
+          e.preventDefault();
+          e.stopPropagation();
+          var previewUrl = 'https://drive.google.com/file/d/' + encodeURIComponent(fileId) + '/preview';
+          window.location.href = previewUrl; // same tab navigation
+          return;
+        }
+
+        // Photo: open lightbox
         refreshLightboxSet();
         var idx = Lightbox.items.indexOf(tile);
         if (idx === -1) return;
