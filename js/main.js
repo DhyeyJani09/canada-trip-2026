@@ -384,6 +384,13 @@
     var driveUrl = tile.getAttribute('data-drive-url') || '';
     var fileId = tile.getAttribute('data-file-id') || '';
     var isVideo = tile.getAttribute('data-is-video') === '1';
+         if (isVideo) {
+  console.log('VIDEO TILE:', {
+    driveUrl: driveUrl,
+    fileId: fileId,
+    embedUrl: 'https://drive.google.com/file/d/' + encodeURIComponent(fileId) + '/preview'
+  });
+}
 
     var imgEl = Lightbox.img;
     var videoContainer = document.getElementById('lightboxVideoContainer');
