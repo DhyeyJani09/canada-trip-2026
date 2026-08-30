@@ -578,3 +578,81 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margi
   .reveal { opacity: 1; transform: none; }
   .tile-open:hover img { transform: none; }
 }
+
+/* ========== Lightbox: fullscreen feel, no caption, side button ========== */
+
+/* Make lightbox content fill more of the viewport */
+.lightbox-figure {
+  margin: 0;
+  max-width: 100%;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image fills available space, keeps aspect ratio */
+.lightbox-figure img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Ensure caption takes no space */
+.lightbox-caption[hidden],
+.lightbox-caption {
+  display: none !important;
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Controls row: counter + “Open original” button */
+.lightbox-controls {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+/* Counter stays as-is but slightly subdued */
+.lightbox-counter {
+  opacity: 0.9;
+}
+
+/* “Open original in Drive” button styling */
+.lightbox-open-original {
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.lightbox-open-original:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translateY(-1px);
+}
+
+/* Optional: slightly larger masonry tiles for better orientation perception */
+.tile {
+  overflow: hidden;
+}
+
+.tile img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
