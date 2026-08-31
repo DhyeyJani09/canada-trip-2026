@@ -764,3 +764,50 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margi
     padding: 0.8rem 0.9rem;
   }
 }
+
+/* ===== FORCE FILTER PILLS (override any later styles) ===== */
+.hero .filter-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: .55rem !important;
+  border-top: 1px solid var(--line-soft) !important;
+  padding-top: 1.8rem !important;
+}
+
+.hero .filter-pill {
+  font-family: var(--font-sans) !important;
+  font-size: .85rem !important;
+  font-weight: 400 !important;
+  color: var(--muted) !important;
+  background: transparent !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 100px !important;
+  padding: .48rem 1.05rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .5rem !important;
+  cursor: pointer !important;
+  transition: color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease) !important;
+}
+
+.hero .filter-pill:hover {
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,.28) !important;
+}
+
+.hero .filter-pill.is-active {
+  color: #17130a !important;
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+.hero .pill-count {
+  font-family: var(--font-mono) !important;
+  font-size: .7rem !important;
+  opacity: .75 !important;
+}
+
+.hero .filter-pill.is-active .pill-count {
+  opacity: .85 !important;
+}
