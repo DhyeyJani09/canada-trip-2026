@@ -598,42 +598,6 @@
     Lightbox.initialized = true;
   }
 
-  function initSubscribe() {
-    var form = qs('#subscribeForm');
-
-    if (!form) return;
-
-    var input = qs('#email', form);
-    var note = qs('#formNote', form);
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      var email = input ? input.value.trim() : '';
-
-      if (!emailPattern.test(email)) {
-        if (note) {
-          note.textContent = 'Please enter a valid email address.';
-          note.className = 'form-note mono is-error';
-        }
-
-        if (input) {
-          input.focus();
-        }
-
-        return;
-      }
-
-      if (note) {
-        note.textContent = 'Thank you — you are on the print list.';
-        note.className = 'form-note mono is-ok';
-      }
-
-      form.reset();
-    });
-  }
-
   function boot() {
     initStickyHeader();
     initMobileNav();
@@ -641,7 +605,6 @@
     initReveal();
     initCountUp();
     initGallery();
-    initSubscribe();
   }
 
   if (document.readyState === 'loading') {
