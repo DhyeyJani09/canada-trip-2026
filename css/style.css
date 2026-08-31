@@ -688,3 +688,79 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margi
   display: block;
   object-fit: cover;
 }
+
+/* ========== August 2026 journey timeline ========== */
+
+.timeline-image-wrap {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.timeline-image-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.journey-stops {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.journey-stop {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  min-height: 3.5rem;
+  padding: 0.9rem 1rem;
+  color: var(--ink);
+  font-size: 0.9rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.journey-number {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 991.98px) {
+  .timeline-image-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .timeline-image-wrap img {
+    width: 960px;
+    max-width: none;
+  }
+
+  .journey-stops {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .timeline-image-wrap img {
+    width: 820px;
+  }
+
+  .journey-stops {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-stop {
+    min-height: 3.25rem;
+    padding: 0.8rem 0.9rem;
+  }
+}
