@@ -695,7 +695,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margi
   width: 100%;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: var(--surface);
 }
 
 .timeline-image-wrap img {
@@ -719,7 +719,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.08; margi
   gap: 0.65rem;
   min-height: 3.5rem;
   padding: 0.9rem 1rem;
-  color: var(--ink);
+  color: var(--text);
   font-size: 0.9rem;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
