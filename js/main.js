@@ -241,30 +241,50 @@
   }
 
   function buildFilters(records) {
-    var filters = [
-      { key: 'all', label: 'All' },
-      { key: 'highlights', label: 'Highlights' },
-      { key: 'photos', label: 'Photos' },
-      { key: 'videos', label: 'Videos' }
-    ];
+  var filters = [
+    { key: 'all', label: 'All' },
+    { key: 'highlights', label: 'Highlights' },
+    { key: 'photos', label: 'Photos' },
+    { key: 'videos', label: 'Videos' }
+  ];
 
-    var seen = {};
+  var desiredOrder = [
+    'niagara',
+    'cn-tower',
+    'ripleys',
+    'cruise',
+    'rom',
+    'montreal',
+    '1000-islands',
+    'lion-safari',
+    'zoo',
+    'tobermory',
+    'blue-mountain',
+    'streetcar'
+  ];
 
-    records.forEach(function (record) {
-      var category = categoryFor(record);
-      var key = 'category:' + slugify(category);
+  var categories = {};
 
-      if (seen[key]) return;
+  records.forEach(function (record) {
+    var category = categoryFor(record);
+    var key = slugify(category);
 
-      seen[key] = true;
-      filters.push({
-        key: key,
-        label: prettifyLabel(category)
-      });
+    if (!categories[key]) {
+      categories[key] = category;
+    }
+  });
+
+  desiredOrder.forEach(function (desiredKey) {
+    if (!categories[desiredKey]) return;
+
+    filters.push({
+      key: 'category:' + desiredKey,
+      label: LABEL_OVERRIDES[desiredKey] || prettifyLabel(categories[desiredKey])
     });
+  });
 
-    return filters;
-  }
+  return filters;
+}
 
   function recordMatches(record, filterKey) {
     if (filterKey === 'all') return true;
