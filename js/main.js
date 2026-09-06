@@ -249,7 +249,7 @@
     return record.category || record.folder || 'Uncategorized';
   }
 
-  function buildFilters(records) {
+ function buildFilters(records) {
   var filters = [
     { key: 'all', label: 'All' },
     { key: 'highlights', label: 'Highlights' },
@@ -257,19 +257,55 @@
     { key: 'videos', label: 'Videos' }
   ];
 
-  var desiredOrder = [
-    'niagara',
-    'cn-tower',
-    'ripleys',
-    'cruise',
-    'rom',
-    'montreal',
-    '1000-islands',
-    'lion-safari',
-    'zoo',
-    'tobermory',
-    'blue-mountain',
-    'streetcar'
+  var desiredCategories = [
+    {
+      keys: ['niagara'],
+      label: 'Niagara ⛲️'
+    },
+    {
+      keys: ['cn-tower'],
+      label: 'CN TOWER 📍'
+    },
+    {
+      keys: ['ripleys', 'ripley-s-aquarium', 'ripleys-aquarium'],
+      label: "Ripley's Aquarium 🎣🦈"
+    },
+    {
+      keys: ['cruise', 'toronto-cruise'],
+      label: 'Toronto Cruise ⛴️'
+    },
+    {
+      keys: ['rom'],
+      label: 'ROM 🗿🦖'
+    },
+    {
+      keys: ['montreal'],
+      label: 'Montreal ⛪️'
+    },
+    {
+      keys: ['1000-islands'],
+      label: '1000 islands 🏝'
+    },
+    {
+      keys: ['lion-safari', 'african-lion-safari'],
+      label: 'African Lion Safari 🦁'
+    },
+    {
+      keys: ['zoo', 'toronto-zoo'],
+      label: 'Toronto Zoo 🦒🦍'
+    },
+    {
+      keys: ['tobermory'],
+      label: 'Tobermory 🏝🚢'
+    },
+    {
+      keys: ['blue-mountain'],
+      label: 'Blue Mountain ⛰️🚠🎢'
+    },
+    {
+      keys: ['streetcar', 'street-car-ttc', 'ttc'],
+      label: 'Street Car TTC 🚃'
+    }
   ];
 
   var categories = {};
@@ -283,12 +319,16 @@
     }
   });
 
-  desiredOrder.forEach(function (desiredKey) {
-    if (!categories[desiredKey]) return;
+  desiredCategories.forEach(function (item) {
+    var matchedKey = item.keys.find(function (key) {
+      return categories[key];
+    });
+
+    if (!matchedKey) return;
 
     filters.push({
-      key: 'category:' + desiredKey,
-      label: LABEL_OVERRIDES[desiredKey] || prettifyLabel(categories[desiredKey])
+      key: 'category:' + matchedKey,
+      label: item.label
     });
   });
 
