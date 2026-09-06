@@ -38,6 +38,21 @@
       .replace(/^-+|-+$/g, '') || 'uncategorized';
   }
 
+  // Safety net: if a category/folder name ever comes through as a slug
+  // (e.g. "1000-islands" instead of "1000 islands"), humanize it for display
+  // instead of showing the raw hyphenated value on a filter pill.
+  function prettifyLabel(value) {
+    var str = String(value == null ? '' : value).trim();
+    if (!str) return 'Uncategorized';
+    // only "de-slugify" if it looks like a slug (no spaces, has separators)
+    if (/\s/.test(str)) return str;
+    return str
+      .replace(/[-_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
+
   function isVideo(record) {
     return String(record.mimeType || '').toLowerCase().indexOf('video/') === 0;
   }
@@ -226,7 +241,7 @@
       seen[key] = true;
       filters.push({
         key: key,
-        label: category
+        label: prettifyLabel(category)
       });
     });
 
@@ -287,22 +302,27 @@
   function tileMarkup(record) {
     var video = isVideo(record);
     var title = escapeHtml(record.name || '');
-    var category = escapeHtml(categoryFor(record));
+    var category = escapeHtml(prettifyLabel(categoryFor(record)));
     var thumbnail = escapeHtml(record.thumbnailUrl || '');
     var driveUrl = escapeHtml(record.driveUrl || '');
 
     return (
-      '<div class="tile reveal"' +
+      '<figure class="tile reveal"' +
         ' data-title="' + title + '"' +
         ' data-caption="' + category + '"' +
         ' data-thumbnail="' + thumbnail + '"' +
         ' data-drive-url="' + driveUrl + '"' +
         ' data-is-video="' + (video ? '1' : '0') + '">' +
-        '<button class="tile-open" type="button" aria-label="Open ' + title + '">' +
+        '<button class="tile-open" type="button" aria-label="Open \u201c' + title + '\u201d in viewer">' +
           '<img src="' + thumbnail + '" alt="' + title + '" loading="lazy">' +
           (video ? '<span class="tile-badge">Video</span>' : '') +
+          '<span class="tile-overlay">' +
+            '<span class="tile-cat mono">' + category + '</span>' +
+            '<span class="tile-title">' + title + '</span>' +
+            '<span class="tile-icon" aria-hidden="true"></span>' +
+          '</span>' +
         '</button>' +
-      '</div>'
+      '</figure>'
     );
   }
 
@@ -402,7 +422,14 @@
 
   function initGallery() {
     Gallery.grid = qs('#masonry');
-    Gallery.filterBar = qs('.filter-bar');
+    // Target the dedicated gallery filter bar by ID, NOT by the ".filter-bar"
+    // class. The hero's static trip-teaser pills used to also carry that
+    // class, so document.querySelector('.filter-bar') was grabbing THEM
+    // (the first match in the DOM) and wiping/replacing their hand-written
+    // emoji labels with auto-generated ones — that's what caused pills like
+    // "1000 islands 🏝" to render as "1000-islands". #galleryFilterBar is a
+    // separate element that only this script ever touches.
+    Gallery.filterBar = qs('#galleryFilterBar');
     Gallery.loadMore = qs('#loadMore');
     Gallery.loadMoreWrap = qs('#loadMoreWrap');
     Gallery.countElement = qs('#galleryCount');
@@ -598,6 +625,38 @@
     Lightbox.initialized = true;
   }
 
+  function initSubscribe() {
+    // Guarded no-op unless a #subscribeForm with #email/#formNote exists in
+    // the page. Safe to leave enabled even though the current "Memories"
+    // section is just a CTA link with no form.
+    var form = qs('#subscribeForm');
+    if (!form) return;
+
+    var input = qs('#email', form);
+    var note = qs('#formNote', form);
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var value = (input && input.value ? input.value : '').trim();
+
+      if (!emailPattern.test(value)) {
+        if (note) {
+          note.textContent = 'Please enter a valid email address.';
+          note.className = 'form-note mono is-error';
+        }
+        if (input) input.focus();
+        return;
+      }
+
+      if (note) {
+        note.textContent = 'Thank you — you are on the list.';
+        note.className = 'form-note mono is-ok';
+      }
+      form.reset();
+    });
+  }
+
   function boot() {
     initStickyHeader();
     initMobileNav();
@@ -605,6 +664,7 @@
     initReveal();
     initCountUp();
     initGallery();
+    initSubscribe();
   }
 
   if (document.readyState === 'loading') {
