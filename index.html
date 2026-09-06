@@ -52,8 +52,8 @@
         <h1 class="hero-title" id="hero-title">Mom and Dad<br>in Canada.</h1>
         <p class="hero-lead">For Mom and Dad, with love. Your first international trip to Canada in August 2026 and this  is a small home for every place we saw.</p>
 
-               <!-- Filter pills -->
-        <div class="filter-bar trip-filters" role="group" aria-label="Filter by trip">
+               <!-- Trip teaser pills (decorative — NOT the class="filter-bar" JS targets, so it can never be wiped/overwritten by the dynamic gallery script) -->
+        <div class="trip-filters" role="group" aria-label="Places on this trip">
           <button class="filter-pill is-active" data-filter="all" aria-pressed="true">All <span class="pill-count">18</span></button>
           <button class="filter-pill" data-filter="cn-tower" aria-pressed="false">CN TOWER 📍</button>
           <button class="filter-pill" data-filter="ripleys" aria-pressed="false">Ripley's Aquarium 🎣🦈</button>
@@ -78,6 +78,12 @@
           <span class="mono" id="galleryCount">Showing 12 / 18 frames</span>
           <span class="mono muted">Photos open here. Videos open in Google Drive.</span>
         </div>
+
+        <!-- Dedicated, JS-only target for the dynamic filter pills built from data/gallery.json.
+             Kept separate from the hero's .trip-filters so the script can never touch that markup. -->
+        <div class="filter-bar" id="galleryFilterBar" role="group" aria-label="Filter the gallery"></div>
+
+        <p class="gallery-error mono" id="galleryError" role="alert" hidden></p>
 
         <div class="masonry" id="masonry">
           <!-- 1 -->
@@ -451,19 +457,7 @@
     </button>
     <figure class="lightbox-figure">
   <img id="lightboxImg" src="" alt="">
-  <div id="lightboxVideoContainer" class="lightbox-video-container" hidden>
-    <div id="lightboxVideoContainer" class="lightbox-video-container" hidden>
-  <iframe
-    id="lightboxVideoIframe"
-    src=""
-    frameborder="0"
-    allow="autoplay; fullscreen; picture-in-picture"
-    allowfullscreen
-    sandbox="allow-scripts allow-same-origin allow-presentation"
-  ></iframe>
-</div>
-  </div>
-  <figcaption class="lightbox-caption" hidden>
+  <figcaption class="lightbox-caption">
     <span class="lightbox-title" id="lightboxTitle"></span>
     <span class="lightbox-meta mono" id="lightboxMeta"></span>
   </figcaption>
