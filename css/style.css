@@ -882,16 +882,6 @@ body .hero .trip-filters .filter-pill.is-active .pill-count {
   white-space: nowrap;
 }
 
-/* Extra separation between filters and photos */
-#galleryFilterBar + .gallery-error,
-#galleryFilterBar + .masonry {
-  margin-top: 1.5rem;
-}
-
-#galleryFilterBar ~ .masonry {
-  padding-top: 0.25rem;
-}
-
 /* Smaller pills on narrower screens */
 @media (max-width: 767.98px) {
   #galleryFilterBar {
