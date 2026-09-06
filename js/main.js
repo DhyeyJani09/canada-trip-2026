@@ -217,21 +217,17 @@
     });
   }
 
-  var Gallery = {
-    records: [],
-    filters: [],
-    activeFilter: 'all',
-    pageSize: 24,
-    shown: 24,
-    grid: null,
-    filterBar: null,
-    loadMore: null,
-    loadMoreWrap: null,
-    countElement: null,
-    emptyElement: null,
-    errorElement: null
-  };
-
+ var Gallery = {
+  records: [],
+  filters: [],
+  activeFilter: 'all',
+  grid: null,
+  filterBar: null,
+  countElement: null,
+  emptyElement: null,
+  errorElement: null
+};
+   
   var Lightbox = {
     element: null,
     image: null,
