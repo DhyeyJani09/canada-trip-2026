@@ -864,3 +864,43 @@ body .hero .trip-filters .pill-count {
 body .hero .trip-filters .filter-pill.is-active .pill-count {
   opacity: .85 !important;
 }
+
+/* ===== Dynamic gallery filter layout ===== */
+#galleryFilterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  overflow: visible;
+}
+
+#galleryFilterBar .filter-pill {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Extra separation between filters and photos */
+#galleryFilterBar + .gallery-error,
+#galleryFilterBar + .masonry {
+  margin-top: 1.5rem;
+}
+
+#galleryFilterBar ~ .masonry {
+  padding-top: 0.25rem;
+}
+
+/* Smaller pills on narrower screens */
+@media (max-width: 767.98px) {
+  #galleryFilterBar {
+    gap: 0.45rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #galleryFilterBar .filter-pill {
+    font-size: 0.78rem;
+    padding: 0.42rem 0.8rem;
+  }
+}
