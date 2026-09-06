@@ -372,11 +372,10 @@
       }
 
       button.addEventListener('click', function () {
-        Gallery.activeFilter = filter.key;
-        Gallery.shown = Gallery.pageSize;
-        renderFilters();
-        renderGrid();
-      });
+  Gallery.activeFilter = filter.key;
+  renderFilters();
+  renderGrid();
+});
 
       Gallery.filterBar.appendChild(button);
     });
@@ -410,34 +409,20 @@
   }
 
   function updateGalleryStatus(matches, displayed) {
-    if (Gallery.countElement) {
-      if (Gallery.activeFilter === 'all') {
-        Gallery.countElement.textContent =
-          'Showing ' + displayed + ' / ' + Gallery.records.length + ' frames';
-      } else {
-        Gallery.countElement.textContent =
-          'Showing ' + displayed + ' / ' + matches.length + ' frames';
-      }
-    }
-
-    if (Gallery.emptyElement) {
-      Gallery.emptyElement.hidden = displayed !== 0;
-    }
-
-    if (Gallery.loadMoreWrap) {
-      Gallery.loadMoreWrap.style.display =
-        matches.length > Gallery.shown ? '' : 'none';
-    }
-
-    if (Gallery.loadMore) {
-      var remaining = Math.max(matches.length - Gallery.shown, 0);
-      var remainingElement = qs('.load-remaining', Gallery.loadMore);
-
-      if (remainingElement) {
-        remainingElement.textContent = '+' + remaining;
-      }
+  if (Gallery.countElement) {
+    if (Gallery.activeFilter === 'all') {
+      Gallery.countElement.textContent =
+        'Showing ' + displayed + ' / ' + Gallery.records.length + ' frames';
+    } else {
+      Gallery.countElement.textContent =
+        'Showing ' + displayed + ' / ' + matches.length + ' frames';
     }
   }
+
+  if (Gallery.emptyElement) {
+    Gallery.emptyElement.hidden = displayed !== 0;
+  }
+}
 
   function visiblePhotoTiles() {
     if (!Gallery.grid) return [];
@@ -450,8 +435,8 @@
   function renderGrid() {
     if (!Gallery.grid) return;
 
-    var matches = currentRecords();
-    var displayedRecords = matches.slice(0, Gallery.shown);
+      var matches = currentRecords();
+      var displayedRecords = matches;
 
     Gallery.grid.innerHTML = displayedRecords.map(tileMarkup).join('');
 
@@ -494,9 +479,6 @@
         '<p class="gallery-error" role="alert">' + escapeHtml(message) + '</p>';
     }
 
-    if (Gallery.loadMoreWrap) {
-      Gallery.loadMoreWrap.style.display = 'none';
-    }
 
     if (Gallery.countElement) {
       Gallery.countElement.textContent = '';
@@ -513,24 +495,11 @@
     // "1000 islands 🏝" to render as "1000-islands". #galleryFilterBar is a
     // separate element that only this script ever touches.
     Gallery.filterBar = qs('#galleryFilterBar');
-    Gallery.loadMore = qs('#loadMore');
-    Gallery.loadMoreWrap = qs('#loadMoreWrap');
     Gallery.countElement = qs('#galleryCount');
     Gallery.emptyElement = qs('#emptyState');
     Gallery.errorElement = qs('#galleryError');
 
     if (!Gallery.grid) return;
-
-    if (Gallery.loadMore) {
-      Gallery.loadMore.addEventListener('click', function () {
-        Gallery.shown += Gallery.pageSize;
-        renderGrid();
-      });
-    }
-
-    if (Gallery.loadMoreWrap) {
-      Gallery.loadMoreWrap.style.display = 'none';
-    }
 
     fetch('data/gallery.json')
       .then(function (response) {
@@ -741,8 +710,7 @@
   }
 
   function applyFilterAndJump(key) {
-    Gallery.activeFilter = key;
-    Gallery.shown = Gallery.pageSize;
+  Gallery.activeFilter = key;
 
     // If gallery.json has already loaded, re-render immediately.
     // If it hasn't, initGallery()'s .then() will render with this
