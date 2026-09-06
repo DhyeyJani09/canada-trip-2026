@@ -44,16 +44,25 @@
   // A small lookup handles the cases plain title-casing gets wrong —
   // acronyms (TTC, ROM, CN) and possessives (Ripley's).
   var LABEL_OVERRIDES = {
-    'cn-tower': 'CN Tower',
-    'ripleys': "Ripley's Aquarium",
-    'ripley-s-aquarium': "Ripley's Aquarium",
-    'rom': 'ROM',
-    'streetcar': 'Street Car TTC',
-    'street-car-ttc': 'Street Car TTC',
-    'ttc': 'TTC',
-    '1000-islands': '1000 Islands',
-    'lion-safari': 'African Lion Safari'
-  };
+  'niagara': 'Niagara ⛲️',
+  'cn-tower': 'CN TOWER 📍',
+  'ripleys': "Ripley's Aquarium 🎣🦈",
+  'ripley-s-aquarium': "Ripley's Aquarium 🎣🦈",
+  'cruise': 'Toronto Cruise ⛴️',
+  'toronto-cruise': 'Toronto Cruise ⛴️',
+  'rom': 'ROM 🗿🦖',
+  'montreal': 'Montreal ⛪️',
+  '1000-islands': '1000 islands 🏝',
+  'lion-safari': 'African Lion Safari 🦁',
+  'african-lion-safari': 'African Lion Safari 🦁',
+  'zoo': 'Toronto Zoo 🦒🦍',
+  'toronto-zoo': 'Toronto Zoo 🦒🦍',
+  'tobermory': 'Tobermory 🏝🚢',
+  'blue-mountain': 'Blue Mountain ⛰️🚠🎢',
+  'streetcar': 'Street Car TTC 🚃',
+  'street-car-ttc': 'Street Car TTC 🚃',
+  'ttc': 'Street Car TTC 🚃'
+};
 
   function prettifyLabel(value) {
     var str = String(value == null ? '' : value).trim();
