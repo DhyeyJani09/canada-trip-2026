@@ -41,9 +41,27 @@
   // Safety net: if a category/folder name ever comes through as a slug
   // (e.g. "1000-islands" instead of "1000 islands"), humanize it for display
   // instead of showing the raw hyphenated value on a filter pill.
+  // A small lookup handles the cases plain title-casing gets wrong —
+  // acronyms (TTC, ROM, CN) and possessives (Ripley's).
+  var LABEL_OVERRIDES = {
+    'cn-tower': 'CN Tower',
+    'ripleys': "Ripley's Aquarium",
+    'ripley-s-aquarium': "Ripley's Aquarium",
+    'rom': 'ROM',
+    'streetcar': 'Street Car TTC',
+    'street-car-ttc': 'Street Car TTC',
+    'ttc': 'TTC',
+    '1000-islands': '1000 Islands',
+    'lion-safari': 'African Lion Safari'
+  };
+
   function prettifyLabel(value) {
     var str = String(value == null ? '' : value).trim();
     if (!str) return 'Uncategorized';
+
+    var overrideKey = slugify(str);
+    if (LABEL_OVERRIDES[overrideKey]) return LABEL_OVERRIDES[overrideKey];
+
     // only "de-slugify" if it looks like a slug (no spaces, has separators)
     if (/\s/.test(str)) return str;
     return str
@@ -657,6 +675,36 @@
     });
   }
 
+  function applyFilterAndJump(key) {
+    Gallery.activeFilter = key;
+    Gallery.shown = Gallery.pageSize;
+
+    // If gallery.json has already loaded, re-render immediately.
+    // If it hasn't, initGallery()'s .then() will render with this
+    // activeFilter already set once the data arrives.
+    if (Gallery.records.length) {
+      renderFilters();
+      renderGrid();
+    }
+
+    var target = qs('#gallery');
+    if (target) {
+      target.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+  function initFilterJumpLinks() {
+    qsa('[data-jump-filter]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        applyFilterAndJump(link.getAttribute('data-jump-filter'));
+      });
+    });
+  }
+
   function boot() {
     initStickyHeader();
     initMobileNav();
@@ -664,6 +712,7 @@
     initReveal();
     initCountUp();
     initGallery();
+    initFilterJumpLinks();
     initSubscribe();
   }
 
